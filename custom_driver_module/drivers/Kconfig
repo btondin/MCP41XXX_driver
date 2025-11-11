@@ -1,0 +1,6 @@
+# custom_driver_module/drivers/Kconfig
+
+menu "Drivers"
+# Carrega o arquivo Kconfig do nosso driver
+rsource "mcp41xxx/Kconfig.mcp41xxx"
+endmenu
