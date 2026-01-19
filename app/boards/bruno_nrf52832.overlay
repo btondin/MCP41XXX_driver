@@ -11,13 +11,15 @@
  */
 &spi1 {
 	compatible = "nordic,nrf-spim";
-	status = "okay";
+    status = "okay";
 
-	pinctrl-0 = <&spi1_default>;
-	pinctrl-1 = <&spi1_sleep>;
-	pinctrl-names = "default", "sleep";
+    /* Chip select do display */
+    cs-gpios = <&gpio0 19 GPIO_ACTIVE_LOW>;
 
-	cs-gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
+    /* Pin control já definido no seu board */
+    pinctrl-0 = <&spi1_default>;
+    pinctrl-1 = <&spi1_sleep>;
+    pinctrl-names = "default", "sleep";
 
 	mcp41xxx_0: mcp41xxx@0 {
 		compatible = "microchip,mcp41xxx";
