@@ -70,12 +70,19 @@ int main(void)
 	int num_steps = ARRAY_SIZE(resistance_steps);
 	int i = 0;
 
+	/* VCC for voltage divider calculation (in millivolts) */
+	const uint32_t vcc_mv = 3300;
+
 	/* Main application loop */
 	while (1) {
-		
+
 		uint32_t ohms = resistance_steps[i];
 
-		LOG_INF("Setting resistance to: %u Ohms", ohms);
+		/* Calculate voltage divider output: Vout = VCC * (R / Rtotal) */
+		uint32_t voltage_mv = (vcc_mv * ohms) / total_res_ohms;
+
+		LOG_INF("Setting resistance to: %u Ohms (%u.%02u Volts)",
+			ohms, voltage_mv / 1000, (voltage_mv % 1000) / 10);
 		
 		/* 9. Call the new high-level API */
 		err = mcp41xxx_set_resistance(pot_dev, ohms);
