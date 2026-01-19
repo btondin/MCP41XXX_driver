@@ -93,7 +93,7 @@ int main(void)
 			LOG_INF("Test cycle complete.");
 		}
 
-		k_sleep(K_MSEC(5000)); /* Wait 5 seconds */
+		k_sleep(K_MSEC(2000)); /* Wait 5 seconds */
 	}
 	return 0;
 }
